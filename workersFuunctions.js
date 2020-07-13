@@ -48,7 +48,6 @@ router.get('/getWorkerDetails', function(req ,res){
     else{
      const myDataBase = client.db(dbName);
      const workersCollection=myDataBase.collection('workers');
-     //console.log(req.query.id)
      var workerDetails=workersCollection.find({id:req.query.id}).toArray(function(err, result){
          if(err){
              console.log(err);
@@ -114,7 +113,6 @@ router.post('/addWorker', function(req, res){
                  newWorker=req.body;
                  fs.readFile('employees.json','utf-8', (err, buffer) => {
                      if (err) return console.error('File read error: ', err)
-                     var ip = ']';
                      var newValue = buffer.slice(0, buffer.length-1);
                      newValue+=',';
                      newValue+=JSON.stringify(newWorker);
