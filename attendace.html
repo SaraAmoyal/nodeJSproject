@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+
+    function getAllWorkers(){
+        $.ajax({
+            url:"http://localhost:4000/workers/getAllWorkers",
+            data:null,
+            type:"get",
+            success:function(data){
+                console.log(data);
+                console.log('I succeeded.')
+            },
+            error:function(err){
+                console.log('Error in get!');
+            }
+            })
+    }
+
+    function getWorkerDetails(){
+    var id=document.getElementById('getWorkerId1').value;
+        console.log('start get worker deetails.');
+        $.ajax({
+            url:"http://localhost:4000/workers/getWorkerDetails",
+            data:{id:id},
+            type:"get",
+            success:function(data){
+                document.getElementById('idI').value=data.id;
+                document.getElementById('fnameI').value=data.firstName;
+                document.getElementById('lnameI').value=data.lastName;
+                document.getElementById('addressI').value=data.address;
+                document.getElementById('telI').value=data.tel;
+                document.getElementById('mailI').value=data.mail;
+                console.log('I succeeded.')
+            },
+            error:function(err){
+                console.log('Error in get!');
+            }
+        });
+    }
+
+    function deleteWorker(){
+        var id=document.getElementById('getWorkerId2').value;
+        console.log("start delete worker.");
+        $.ajax({
+        url:"http://localhost:4000/workers/deleteWorker",
+        data:{id:id},
+        type:"post",
+        success:function(data){
+         alert("Success");
+        },
+        error:function(err){
+         alert("Error");
+     }    
+    });
+    }
+
+    function addWorker(){
+       var myworker={};
+       myworker.id=document.getElementById('idI').value;
+       myworker.firstName=document.getElementById('fnameI').value;
+       myworker.lastName=document.getElementById('lnameI').value;
+       myworker.address=document.getElementById('addressI').value;
+       myworker.tel=document.getElementById('telI').value;
+       myworker.mail=document.getElementById('mailI').value;
+
+       console.log("start add worker.");
+        $.ajax({
+        url:"http://localhost:4000/workers/addWorker",
+        data:myworker,
+        type:"post",
+        success:function(data){
+         alert("Success");
+        },
+        error:function(err){
+         alert("Error");
+         }
+         });
+    }
+
+    function editWorker(){
+        var myworker={};
+       myworker.id=document.getElementById('idI').value;
+       myworker.firstName=document.getElementById('fnameI').value;
+       myworker.lastName=document.getElementById('lnameI').value;
+       myworker.address=document.getElementById('addressI').value;
+       myworker.tel=document.getElementById('telI').value;
+       myworker.mail=document.getElementById('mailI').value;
+
+       console.log("start edit worker.");
+        $.ajax({
+        url:"http://localhost:4000/workers/editWorker",
+        data:myworker,
+        type:"put",
+        success:function(data){
+         alert("Success");
+        },
+        error:function(err){
+         alert("Error");
+         }
+         });
+    }
+    
+
+
+</script>
+</head>
+<body>
+<h1>All workers</h1>
+
+<input type="button" onclick="getAllWorkers()" value="Get All Workers">
+<br>
+<label for="getWorkerId1">workers id: </label> <input id="getWorkerId1" type="text">
+<input type="button" onclick="getWorkerDetails()" value="Get Worker Details">
+<br>
+<label for="getWorkerId2">workers id: </label> <input id="getWorkerId2" type="text">
+<input type="button" onclick="deleteWorker()" value="Delete Worker">
+<br>
+
+<input id="idI" type="text"  placeholder="enter id">
+<input id="fnameI" type="text" placeholder="enter first name">
+<input id="lnameI" type="text" placeholder="enter last name">
+<br>
+<input id="addressI" type="text" placeholder="enter address">
+<input id="telI" type="text" placeholder="enter tel">
+<input id="mailI" type="text" placeholder="enter mail">
+<br>
+<input type="button" onclick="addWorker()" value="Add Worker">
+<br>
+
+<input type="button" onclick="editWorker()" value="Edit Worker">
+
+
+</body>
+</html>
