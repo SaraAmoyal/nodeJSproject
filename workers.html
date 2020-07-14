@@ -1,8 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="allStyles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
+
+
+function generate_table(data) {
+  var body = document.getElementsByTagName("p")[0];
+  var tbl = document.createElement("table");
+  var tblBody = document.createElement("tbody");
+
+  
+  var row = document.createElement("tr");
+  var cell = document.createElement("td");
+      var cellText = document.createTextNode("worker name");
+      cell.appendChild(cellText);
+      row.appendChild(cell);
+      var cell = document.createElement("td");
+      var cellText = document.createTextNode("worker tel number");
+      cell.appendChild(cellText);
+      row.appendChild(cell);
+
+      tblBody.appendChild(row); 
+
+  for (var i = 0; i < data.length; i++) {
+    var row = document.createElement("tr");
+    
+      var cell = document.createElement("td");
+      var cellText = document.createTextNode(data[i].name);
+      cell.appendChild(cellText);
+      row.appendChild(cell);
+      var cell = document.createElement("td");
+      var cellText = document.createTextNode(data[i].telephone);
+      cell.appendChild(cellText);
+      row.appendChild(cell);
+
+    tblBody.appendChild(row);
+  }
+  tbl.appendChild(tblBody);
+  if(body.firstElementChild)
+  {
+    var lasttbl=body.firstElementChild;
+    body.removeChild(lasttbl)
+    body.appendChild(tbl);
+  
+  }
+  else
+  body.appendChild(tbl);
+  tbl.setAttribute("class", "table-responsive");
+}
+
 
     function getAllWorkers(){
         $.ajax({
@@ -10,7 +59,7 @@
             data:null,
             type:"get",
             success:function(data){
-                console.log(data);
+                generate_table(data);
                 console.log('I succeeded.')
             },
             error:function(err){
@@ -109,29 +158,54 @@
 </head>
 <body>
 <h1>All workers</h1>
+<div class="body">
+    <div id="placeForTable"></div>
+    <form class="form-inline">
+        <div class="form-group myFormGroup">
+        <div style="padding: 8px;">
+            <input type="button" onclick="getAllWorkers()" class="btn btn-outline-success" style="padding: 8px;" value="Get All Workers">
+          </div>
+          <p id="placeForTable"></p></div>
+         <br>
+<div class="form-group myFormGroup">
+   <b> <label for="getWorkerId1">workers id: </label>
+    <input id="getWorkerId1" type="text" class="form-control"></b>
+  <div style="padding: 8px;">
+  <input type="button" class="btn btn-outline-success" style="padding: 8px;" onclick="getWorkerDetails()" value="Get Worker Details">
+</div></div>
 
-<input type="button" onclick="getAllWorkers()" value="Get All Workers">
-<br>
-<label for="getWorkerId1">workers id: </label> <input id="getWorkerId1" type="text">
-<input type="button" onclick="getWorkerDetails()" value="Get Worker Details">
-<br>
-<label for="getWorkerId2">workers id: </label> <input id="getWorkerId2" type="text">
-<input type="button" onclick="deleteWorker()" value="Delete Worker">
-<br>
-
-<input id="idI" type="text"  placeholder="enter id">
-<input id="fnameI" type="text" placeholder="enter first name">
-<input id="lnameI" type="text" placeholder="enter last name">
-<br>
-<input id="addressI" type="text" placeholder="enter address">
-<input id="telI" type="text" placeholder="enter tel">
-<input id="mailI" type="text" placeholder="enter mail">
-<br>
-<input type="button" onclick="addWorker()" value="Add Worker">
-<br>
-
-<input type="button" onclick="editWorker()" value="Edit Worker">
-
-
+<div class="form-group myFormGroup">
+<b><label for="getWorkerId2">workers id: </label></b> 
+<input id="getWorkerId2" type="text" class="form-control">
+      <div style="padding: 8px;">
+<input type="button" class="btn btn-outline-success" onclick="deleteWorker()" value="Delete Worker">
+    </div></div>
+    
+      <div class="form-group myFormGroup">
+        <b>
+        <label for="idI">Id: </label>
+        <input id="idI" class="form-control" type="text"  placeholder="enter id">
+        <label for="fnameI"> First name: </label>
+        <input id="fnameI"  class="form-control" type="text" placeholder="enter first name">
+        <label for="lnameI"> Last name: </label>
+        <input id="lnameI"  class="form-control" type="text" placeholder="enter last name">
+        <label for="addressI">Address: </label>
+        <input id="addressI" class="form-control" type="text" placeholder="enter address">
+        <label for="telI"> Tel: </label>
+        <input id="telI" class="form-control" type="text" placeholder="enter tel">
+        <label for="mailI"> Email: </label>
+        <input id="mailI" class="form-control" type="text" placeholder="enter mail">
+        </b><br> 
+        <div style="padding: 8px;">
+        <input type="button" class="btn btn-outline-success" style="padding: 8px;" onclick="addWorker()" value="Add Worker">
+        <input type="button" class="btn btn-outline-success" style="padding: 8px;" onclick="editWorker()" value="Edit Worker">
+    </div>
+</div>
+     <div class="form-group myFormGroup">
+        <div style="padding: 8px;">
+            <button class="btn btn-outline-success" type="button"><a href="attendace.html">Attendace</a></button>
+          </div></div>
+    </form>
+    </div>
 </body>
 </html>

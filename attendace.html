@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href="allStyles.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 
 function generate_table(data) {
-  var body = document.getElementsByTagName("div")[0];
+  var body = document.getElementsByTagName("p")[0];
   var tbl = document.createElement("table");
   var tblBody = document.createElement("tbody");
 
@@ -14,15 +16,20 @@ function generate_table(data) {
   var cell = document.createElement("td");
       var cellText = document.createTextNode("attendance date");
       cell.appendChild(cellText);
+      cell.setAttribute("font-weight", "bold");
       row.appendChild(cell);
       var cell = document.createElement("td");
       var cellText = document.createTextNode("start hour");
       cell.appendChild(cellText);
+      cell.setAttribute("font-weight", "bold");
       row.appendChild(cell);
       var cell = document.createElement("td");
       var cellText = document.createTextNode("end hour");
       cell.appendChild(cellText);
+      cell.setAttribute("font-weight", "bold");
       row.appendChild(cell);
+      //row.setAttribute("font-weight", "bold");
+
       tblBody.appendChild(row); 
 
   for (var i = 0; i < data.length; i++) {
@@ -44,7 +51,6 @@ function generate_table(data) {
     tblBody.appendChild(row);
   }
   tbl.appendChild(tblBody);
-  debugger
   if(body.firstElementChild)
   {
     var lasttbl=body.firstElementChild;
@@ -54,7 +60,7 @@ function generate_table(data) {
   }
   else
   body.appendChild(tbl);
-  tbl.setAttribute("border", "2");
+  tbl.setAttribute("class", "table-responsive");
 }
 
 
@@ -99,20 +105,38 @@ function generate_table(data) {
 </script>
 </head>
 <body>
-<h1>All workers</h1>
-<label for="getWorkerId1">your id: </label> <input id="getWorkerId1" type="text">
-<br>
-<input type="button" onclick="getMyReport()" value="Get My Report">
-<br>
+<h1>Attendance reports</h1>
+<div class="body">
 
-<input id="idI" type="text"  placeholder="enter id">
-<input id="dateI" type="date" placeholder="enter date">
-<input id="fromI" type="time" placeholder="from hour">
-<input id="toI" type="time" placeholder="to hour">
-<br>
-<input type="button" onclick="addJobDay()" value="Add Job Day">
-
-<div id="placeForTable"></div>
-
+<form class="form-inline">
+  <div class="myFormGroup form-group">
+    <b><label for="getWorkerId1">Your id: </label></b>
+    <input id="getWorkerId1" type="text" class="form-control">
+  
+  <div style="padding: 8px;">
+  <input type="button" class="btn btn-outline-success" style="padding: 8px;" onclick="getMyReport()" value="Get My Report">
+  <p id="placeForTable"></p>
+</div></div>
+<div class="myFormGroup">
+  <div class="form-group">
+    <b><label for="pwd">Id: </label>
+    <input type="text" class="form-control" id="idI" placeholder="enter id">
+    <label for="pwd"> Date: </label>
+    <input id="dateI" class="form-control" type="date" placeholder="enter date">
+    <label for="pwd"> Start hour: </label>
+    <input id="fromI" class="form-control" type="time" placeholder="from hour">
+    <label for="pwd"> End hour: </label>
+    <input id="toI" class="form-control" type="time" placeholder="to hour">
+  </b></div>
+  <div style="padding: 8px;">
+  <input type="button" class="btn btn-outline-success" style="padding: 8px;" onclick="addJobDay()" value="Add Job Day">
+</div>
+</div>
+<div class="form-group myFormGroup">
+  <div style="padding: 8px;">
+      <button class="btn btn-outline-success" type="button"><a href="workers.html">Workers</a></button>
+    </div></div>
+</form>
+</div>
 </body>
 </html>

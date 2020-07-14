@@ -80,15 +80,15 @@ router.get('/getMyReport', function(req ,res){
                     if(err) 
                      return "err in read the report: "+err;
                     
-                   arr=[];
-                    arr.push(JSON.parse(result));
-
+                   
+                    arr=JSON.parse(result);
+console.log(arr);
                     arr.forEach(element => {
                         var dt = datetime.create(element.date);
                         var formatted = dt.format('m/d/Y H:M:S');
                         element.date=formatted;
                     }); 
-                    console.log(arr);
+                    
                     return res.send(arr);
                   });
 });

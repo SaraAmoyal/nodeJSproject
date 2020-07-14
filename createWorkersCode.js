@@ -1,4 +1,6 @@
-const { workers } = require("cluster");
+
+db.createCollection('workers');
+db.createCollection('attendance');
 
 function randName(){
     var letters="abcdwfghijklmnopqrstuvwxyz";
@@ -46,13 +48,9 @@ function randMail(){
     var te=randTel();
     var mai=randMail();
     var act=true;
-    var obj=new workers(Id, )
+    
     var anObj = { id: Id, firstName: fn,  lastName:ln, address:add, tel:te, mail:mai, isActive:act};
-    workersCollection.insertOne(anObj, function(err, res) {
-        if (err) console.log("can't insert!");
-        else
-        console.log("1 document inserted");
-       });
+    workersCollection.insertOne({anObj})
     } 
     
     

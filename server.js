@@ -4,7 +4,7 @@ const fs=require('fs');
 
 const workersPage=require('./workersFuunctions');
 const attendancesPage=require('./attendancesFunctions');
-
+var path = require('path');
 const bodyParser=require('body-parser');
 //const { workers } = require('cluster');
 
@@ -19,7 +19,10 @@ app.use(function(req, res, next){
     res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
     next();
 })
-
+app.get('/htmlworkers', function(req, res) {
+    console.log("sendfile")
+    res.sendFile(path.join(__dirname + '/workers.html'));
+});
 app.use('/workers', workersPage);
 
 app.use('/attendance', attendancesPage);
