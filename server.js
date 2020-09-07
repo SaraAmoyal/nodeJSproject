@@ -6,8 +6,6 @@ const workersPage=require('./workersFuunctions');
 const attendancesPage=require('./attendancesFunctions');
 var path = require('path');
 const bodyParser=require('body-parser');
-//const { workers } = require('cluster');
-
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -26,21 +24,5 @@ app.get('/htmlworkers', function(req, res) {
 app.use('/workers', workersPage);
 
 app.use('/attendance', attendancesPage);
-
-// app.get('/', function(req, res){
-// console.log('hello');
-// })
-
-// app.use(function(req, res, next){
-//     console.log('use')
-//     next();//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// })
-
-
-
-// app.use(function(req, res, next){
-//     console.log('url not found.');
-//     next();
-// })
 
 

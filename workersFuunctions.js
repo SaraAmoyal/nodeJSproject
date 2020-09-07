@@ -27,12 +27,6 @@ MongoClient.connect(url, function(err, client){
                         return res.status(500).send(err);
                 }
                 else{
-                    //the first time-write all the objects into the json
-                    // var empsAsJSON=[];
-                    // empsAsJSON.push(JSON.stringify(result));
-                    // fs.writeFile('employees.json', empsAsJSON, (err)=>{
-                    //         if(err) console.log()
-                    // });
                     var Names = result.map(function(item){return {name:item.firstName+" "+item.lastName, telephone:item.tel};});
                     client.close();
                     return res.send(Names);
@@ -76,7 +70,6 @@ router.post('/deleteWorker', function(req ,res){
     else{
      const myDataBase = client.db(dbName);
      const workersCollection=myDataBase.collection('workers');
-     //console.log("hjfkd "+req.body.id)
      workersCollection.updateOne(
      {id:req.body.id},
      {$set:{

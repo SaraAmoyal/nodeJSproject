@@ -66,7 +66,6 @@ router.post('/addJobDay', function(req, res){
     });
 })
 
-
 router.get('/getMyReport', function(req ,res){
     console.log("arived get report.");
     var path='attendaceFiles/'+req.query.id;
@@ -79,16 +78,13 @@ router.get('/getMyReport', function(req ,res){
                   fs.readFile(path, function(err, result){
                     if(err) 
                      return "err in read the report: "+err;
-                    
-                   
                     arr=JSON.parse(result);
-console.log(arr);
+                    console.log(arr);
                     arr.forEach(element => {
                         var dt = datetime.create(element.date);
                         var formatted = dt.format('m/d/Y H:M:S');
                         element.date=formatted;
                     }); 
-                    
                     return res.send(arr);
                   });
 });

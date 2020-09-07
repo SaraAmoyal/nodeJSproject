@@ -56,24 +56,8 @@ class workers{
     get IsActive(){
         return this.isActive;
     }
-    set IsActive(IsActive){//check it!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    set IsActive(IsActive){
         
         this.isActive=IsActive;
     }
-
-    //קבלת רשימת שמות וטלפונים של כל העובדים, 
-
-
-    //קבלת הפרטים המלאים עבור עובד בודד,
-
-
-    // מחיקת עובד,
-
-
-    // הוספת עובד
-
-
-     //ועדכון עובד
-
-     
 } 

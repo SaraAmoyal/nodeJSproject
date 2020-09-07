@@ -33,7 +33,7 @@ class attendance{
     get ForWorker(){
         return this.forWorker;
     }
-    set ForWorker(ForWorker){//return the name?
+    set ForWorker(ForWorker){
         this.forWorker=ForWorker;
     }
 

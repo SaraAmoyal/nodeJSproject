@@ -11,8 +11,6 @@ function generate_table(data) {
   var body = document.getElementsByTagName("p")[0];
   var tbl = document.createElement("table");
   var tblBody = document.createElement("tbody");
-
-  
   var row = document.createElement("tr");
   var cell = document.createElement("td");
       var cellText = document.createTextNode("worker name");
@@ -22,12 +20,10 @@ function generate_table(data) {
       var cellText = document.createTextNode("worker tel number");
       cell.appendChild(cellText);
       row.appendChild(cell);
-
       tblBody.appendChild(row); 
 
   for (var i = 0; i < data.length; i++) {
-    var row = document.createElement("tr");
-    
+      var row = document.createElement("tr");
       var cell = document.createElement("td");
       var cellText = document.createTextNode(data[i].name);
       cell.appendChild(cellText);
@@ -36,16 +32,14 @@ function generate_table(data) {
       var cellText = document.createTextNode(data[i].telephone);
       cell.appendChild(cellText);
       row.appendChild(cell);
-
-    tblBody.appendChild(row);
-  }
+      tblBody.appendChild(row);
+    }
   tbl.appendChild(tblBody);
   if(body.firstElementChild)
   {
     var lasttbl=body.firstElementChild;
     body.removeChild(lasttbl)
     body.appendChild(tbl);
-  
   }
   else
   body.appendChild(tbl);
